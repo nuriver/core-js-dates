@@ -83,10 +83,21 @@ function getDayName(date) {
  * Date('2024-02-13T00:00:00Z') => Date('2024-02-16T00:00:00Z')
  * Date('2024-02-16T00:00:00Z') => Date('2024-02-23T00:00:00Z')
  */
-function getNextFriday(/* date */) {
-  throw new Error('Not implemented');
+function getNextFriday(date) {
+  const fridayNum = 5;
+  const givenDate = new Date(date);
+  const givenDay = givenDate.getDay();
+  let daysToFriday;
+  if (givenDay < 5) {
+    daysToFriday = fridayNum - givenDay;
+  } else if (givenDay === 5) {
+    daysToFriday = fridayNum + 2;
+  } else {
+    daysToFriday = fridayNum + 1;
+  }
+  givenDate.setDate(givenDate.getDate() + daysToFriday);
+  return givenDate;
 }
-
 /**
  * Returns the number of days in a specified month and year.
  *
